@@ -105,7 +105,7 @@ function fnSubmit() {
 			var blob = new Blob([fileURL], {type: 'image/jpg'});
 			
 			var formData = new FormData();
-			formData.append('myPhotofile', blob, jFileName);
+			formData.append('fphoto1', blob, jFileName);
 			
 			
 			var xhr = new XMLHttpRequest();
