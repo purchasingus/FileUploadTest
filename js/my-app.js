@@ -102,8 +102,10 @@ function fnSubmit() {
 			var uri = encodeURI("http://ztest.cornerstone-cloud.com/myrol/MyROL_app_listener.cfm");
 			var jFileName = new Date().getTime() + '.jpg';  //force filename to get around unicode and other illegal characters issue
 			
+			var blob = new Blob([fileURL], {type: 'image/jpg'});
+			
 			var formData = new FormData();
-			formData.append('myPhotofile', [fileURL], jFileName);
+			formData.append('myPhotofile', blob, jFileName);
 			
 			
 			var xhr = new XMLHttpRequest();
