@@ -175,6 +175,12 @@ function fnSubmit() {
     
 }
 
+// Handle the start of the transmission
+function onloadstartHandler(evt) {
+  var div = document.getElementById('lblProgress');
+  div.innerHTML = 'Upload started.';
+}
+
 // Handle the end of the transmission
 function onloadHandler(evt) {
   var div = document.getElementById('lblProgress');
