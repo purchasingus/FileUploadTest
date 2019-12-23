@@ -123,43 +123,7 @@ function fnSubmit() {
 			
 			
 			
-			
-			// Handle the end of the transmission
-			function onloadHandler(evt) {
-			  var div = document.getElementById('lblProgress');
-			  div.innerHTML = 'File uploaded. Waiting for response.';
-			}
-			// Handle the progress
-			function onprogressHandler(evt) {
-			  var div = document.getElementById('lblProgress');
-			  var percent = evt.loaded/evt.total*100;
-			  div.innerHTML = percent + '%';
-			}
-			// Handle the response from the server
-			function onreadystatechangeHandler(evt) {
-			  var status, text, readyState;
-			  try {
-				readyState = evt.target.readyState;
-				text = evt.target.responseText;
-				status = evt.target.status;
-			  }
-			  catch(e) {
-				return;
-			  }
-			  if (readyState == 4 && status == '200' && evt.target.responseText) {
-				var status = document.getElementById('lblProgress');
-				status.innerHTML = 'Success!';
-				var result = document.getElementById('lblProgress');
-				result.innerHTML += '<p>The server saw it as:</p><pre>' + evt.target.responseText + '</pre>';
-			  }
-			}
-			
-			
-			
-			
 			/*
-			
-
 			var options = new FileUploadOptions();
 			options.fileKey = "fphoto1";
 			options.fileName = jFileName;
@@ -209,6 +173,36 @@ function fnSubmit() {
 
 	}
     
+}
+
+// Handle the end of the transmission
+function onloadHandler(evt) {
+  var div = document.getElementById('lblProgress');
+  div.innerHTML = 'File uploaded. Waiting for response.';
+}
+// Handle the progress
+function onprogressHandler(evt) {
+  var div = document.getElementById('lblProgress');
+  var percent = evt.loaded/evt.total*100;
+  div.innerHTML = percent + '%';
+}
+// Handle the response from the server
+function onreadystatechangeHandler(evt) {
+  var status, text, readyState;
+  try {
+	readyState = evt.target.readyState;
+	text = evt.target.responseText;
+	status = evt.target.status;
+  }
+  catch(e) {
+	return;
+  }
+  if (readyState == 4 && status == '200' && evt.target.responseText) {
+	var status = document.getElementById('lblProgress');
+	status.innerHTML = 'Success!';
+	var result = document.getElementById('lblProgress');
+	result.innerHTML += '<p>The server saw it as:</p><pre>' + evt.target.responseText + '</pre>';
+  }
 }
 
 
