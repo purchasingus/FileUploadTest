@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>File Upload Test</title>
+</head>
+
+<body>
+
+<form name="form1" id="form1" enctype="multipart/form-data"></form>
+
+<div align="center">
+	<img id="myImage" src="img/icon-camera.png" style="width:auto; max-width:100%; max-height:200px;" />
+</div>
+
+<div align="center">
+    <input type="button" id="btnCamera" value="Camera" />
+    <input type="button" id="btnGallery" value="Gallery" />
+    <input type="submit" id="btnSubmit" value="Submit" />
+</div>
+
+<div align="center">
+	<textarea id="debug1" style="width:100%; height:200px;"></textarea>
+</div>
+<div align="center">
+	<textarea id="debug2" style="width:100%; height:200px;"></textarea>
+</div>
+
+<div align="center">
+	Progress: <div id="lblProgress"></div>
+</div>
+
+
+
+
+
+<script src="cordova.js"></script>
+<script type="text/javascript" src="js/my-app.js"></script>
+
+</body>
+</html>
