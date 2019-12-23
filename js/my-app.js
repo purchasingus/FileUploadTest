@@ -59,7 +59,7 @@ function fnGallery() {
         {
             quality: 75,
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: Camera.DestinationType.FILE_URI,
+            destinationType: Camera.DestinationType.DATA_URI,
 			allowEdit : false,
 			targetWidth: 1920,
 			targetHeight: 1080,
@@ -115,7 +115,7 @@ function fnSubmit() {
 			xhr.addEventListener('readystatechange', onreadystatechangeHandler, false);
 			
 			
-			xhr.open('POST', uri, true);
+			xhr.open('POST', uri);
 			
 			xhr.send(formData);
 			
