@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget 
+  id="my.chancornerstone.fileuploadtest" 
+  version="0.0.1" 
+  xmlns="http://www.w3.org/ns/widgets" 
+  xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  
+  <name>File Upload Test</name>
+  <description>
+      File upload test 2019 from camera/gallery
+  </description>
+  <author email="dev@cornerstone.my" href="http://www.cornerstone.my">
+      Cornerstone My Team
+  </author>
+  <content src="index.html" />
+  
+  <preference name="phonegap-version" value="cli-9.0.0" />
+  <preference name="permissions" value="none" />
+  <preference name="orientation" value="portrait" />
+  <preference name="target-device" value="universal" />
+  <preference name="fullscreen" value="false" />
+    
+  <preference name="android-minSdkVersion" value="19"/>
+  <preference name="android-targetSdkVersion" value="26"/>
+  <preference name="android-installLocation" value="auto"/>
+  
+  <preference name="debuggable" value="false" />
+  
+  <plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />
+  <plugin name="cordova-plugin-whitelist" spec="1" />
+  
+  <access origin="*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  
+  <platform name="android">
+      <allow-intent href="market:*" />
+  </platform>
+  
+  <platform name="ios">
+      
+	  <allow-intent href="itms:*" />
+      <allow-intent href="itms-apps:*" />
+	  
+	  <preference name="deployment-target" value="10.0" />
+	  
+	  <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+		<string>Enable the app to access your Photo library to retrieve photo images (e.g. of pollution-related issues or best practices) for upload as part of your reporting submission.</string>
+	  </edit-config>
+	  <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+		<string>This app only requires access to your location WHEN IN USE in order to include location information into the photo that you capture with your camera prior to your reporting submission.</string>
+	  </edit-config>
+	  <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+		<string>This allows us to include your location information within your captured photo when you upload the photo as part of your reporting submission.</string>
+	  </edit-config>
+	  <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+		<string>Enable the app to access your camera to capture photo images (e.g. take photos of pollution-related issues or best practices) and upload as part of your reporting submission.</string>
+	  </edit-config>
+	  
+  </platform>
+</widget>
