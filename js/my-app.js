@@ -103,7 +103,7 @@ function fnSubmit() {
 			var jFileName = new Date().getTime() + '.jpg';  //force filename to get around unicode and other illegal characters issue
 			
 			var formData = new FormData();
-			formData.append('myPhotofile', fileURL, jFileName);
+			formData.append('myPhotofile', [fileURL], jFileName);
 			
 			
 			var xhr = new XMLHttpRequest();
