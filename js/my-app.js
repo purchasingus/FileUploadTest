@@ -34,7 +34,10 @@ function fnCamera() {
     );
 
     function onSuccess(result) {
-        // convert JSON string to JSON Object
+        
+		try {
+		
+		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
 		// convert json_metadata JSON string to JSON Object 
@@ -49,9 +52,11 @@ function fnCamera() {
 		//document.getElementById('debug2').innerText = JSON.stringify(metadata);
 		
 		
+        } catch(e) {
+			alert('camera onsuccess ' + e);
+		}
 		
-
-        
+		
     }
 
     function onFail(message) {
