@@ -124,8 +124,6 @@ function fnBtn2() {
 	try {
 	
 		alert('do nothing');
-			
-		}
 	
 	} catch(e) {
 		alert('error fnBtn2 ' + e);
