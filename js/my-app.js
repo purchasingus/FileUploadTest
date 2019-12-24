@@ -45,7 +45,7 @@ function fnCamera() {
         image.src = thisResult.filename;
         
 		
-        //document.getElementById('debug1').innerText = JSON.stringify(thisResult);
+        document.getElementById('debug1').innerText = JSON.stringify(thisResult);
 		//document.getElementById('debug2').innerText = JSON.stringify(metadata);
 		
 		
