@@ -83,15 +83,28 @@ function fnGallery() {
 function fnBtn1() {
 	
 	try {
-	
-		const reader = new FileReader();
-		reader.onload = function(){
-			var dataURL = reader.result;
-			document.getElementById('debug1').innerText = dataURL;
+		
+		var tempImage = new Image();
+		tempImage.src = jphoto;
+		tempImage.onload = function() {
 			
-		};
-		reader.readAsDataURL(jphoto);
-	
+			var iWidth = this.width; 
+			var iHeight = this.height; 
+			
+			/* write image into temp canvas with new size */
+			var t_Canvas = document.createElement("canvas");
+			t_Canvas.width = iWidth;
+			t_Canvas.height = iHeight;
+			var t_Ctx = t_Canvas.getContext("2d");
+			t_Ctx.drawImage(tempImage, 0, 0, iWidth, iHeight);
+			
+			/* turn into base64 */
+			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
+			
+			newBlob = new Blob([dataURL], {type: 'image/jpg'});
+			
+		}
+		
 	} catch(e) {
 		alert('error fnBtn1 ' + e);
 	}
@@ -102,10 +115,26 @@ function fnBtn2() {
 	
 	try {
 	
-		var data64 = document.getElementById('debug1').innerText;
-		
-		newBlob = new Blob([data64], {type: 'image/jpg'});
-		document.getElementById('debug2').innerText = JSON.stringify(newBlob);
+		var tempImage = new Image();
+		tempImage.src = jphoto;
+		tempImage.onload = function() {
+			
+			var iWidth = this.width; 
+			var iHeight = this.height; 
+			
+			/* write image into temp canvas with new size */
+			var t_Canvas = document.createElement("canvas");
+			t_Canvas.width = iWidth;
+			t_Canvas.height = iHeight;
+			var t_Ctx = t_Canvas.getContext("2d");
+			t_Ctx.drawImage(tempImage, 0, 0, iWidth, iHeight);
+			
+			/* turn into base64 */
+			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
+			
+			newBlob = new Blob(dataURL, {type: 'image/jpg'});
+			
+		}
 	
 	} catch(e) {
 		alert('error fnBtn2 ' + e);
@@ -117,10 +146,7 @@ function fnBtn3() {
 	
 	try {
 	
-		var data64 = document.getElementById('debug1').innerText;
-		
-		newBlob = new Blob(data64, {type: 'image/jpg'});
-		document.getElementById('debug2').innerText = JSON.stringify(newBlob);
+		alert('do nothing');
 	
 	} catch(e) {
 		alert('error fnBtn3 ' + e);
@@ -138,16 +164,9 @@ function fnSubmit() {
 			var uri = encodeURI("http://ztest.cornerstone-cloud.com/myrol/MyROL_app_listener.cfm");
 			var jFileName = new Date().getTime() + '.jpg';  //force filename to get around unicode and other illegal characters issue
 			
-			alert(jphoto);
-			
-			//todo: file read
-			
-			var blob = new Blob([fileURL], {type: 'image/jpg'});
-			
-			alert(blob.size);
 			
 			var formData = new FormData();
-			formData.append('fphoto1', blob, jFileName);
+			formData.append('fphoto1', newBlob, jFileName);
 			
 			
 			var xhr = new XMLHttpRequest();
