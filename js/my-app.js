@@ -157,6 +157,10 @@ function fnSubmit() {
 			var formData = new FormData();
 			formData.append('fphoto1', newBlob, jFileName);
 			
+			formData.append('var1', 'value1');
+			formData.append('lng', 101.673599);
+			formData.append('lat', 3.207070);
+			
 			
 			var xhr = new XMLHttpRequest();
 			
