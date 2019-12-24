@@ -101,7 +101,15 @@ function fnBtn1() {
 			/* turn into base64 */
 			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
 			
-			newBlob = new Blob([dataURL], {type: 'image/jpg'});
+			/* convert to blob */
+			var byteString;
+			byteString = atob(dataURL.split(',')[1]);
+			
+			var ia = new Uint8Array(byteString.length);
+			for (var i = 0; i < byteString.length; i++) {
+				ia[i] = byteString.charCodeAt(i);
+			}
+			newBlob = new Blob([ia], {type: 'image/jpg'});
 			
 		}
 		
@@ -115,24 +123,7 @@ function fnBtn2() {
 	
 	try {
 	
-		var tempImage = new Image();
-		tempImage.src = jphoto;
-		tempImage.onload = function() {
-			
-			var iWidth = this.width; 
-			var iHeight = this.height; 
-			
-			/* write image into temp canvas with new size */
-			var t_Canvas = document.createElement("canvas");
-			t_Canvas.width = iWidth;
-			t_Canvas.height = iHeight;
-			var t_Ctx = t_Canvas.getContext("2d");
-			t_Ctx.drawImage(tempImage, 0, 0, iWidth, iHeight);
-			
-			/* turn into base64 */
-			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
-			
-			newBlob = new Blob(dataURL, {type: 'image/jpg'});
+		alert('do nothing');
 			
 		}
 	
