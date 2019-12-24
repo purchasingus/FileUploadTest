@@ -1,9 +1,15 @@
 var jphoto = null;
+var newBlob;
 
 function onAppReady() {
 	
 	document.getElementById('btnCamera').addEventListener("click", fnCamera, false);
     document.getElementById('btnGallery').addEventListener("click", fnGallery, false);
+	
+	document.getElementById('btn1').addEventListener("click", fnBtn1, false);
+	document.getElementById('btn2').addEventListener("click", fnBtn2, false);
+	document.getElementById('btn3').addEventListener("click", fnBtn3, false);
+	
     document.getElementById('btnSubmit').addEventListener("click", fnSubmit, false);
 	
 	
@@ -39,8 +45,11 @@ function fnCamera() {
         image.src = thisResult.filename;
         
 		
-        document.getElementById('debug1').innerText = JSON.stringify(thisResult);
-		document.getElementById('debug2').innerText = JSON.stringify(metadata);
+        //document.getElementById('debug1').innerText = JSON.stringify(thisResult);
+		//document.getElementById('debug2').innerText = JSON.stringify(metadata);
+		
+		
+		
 
         
     }
@@ -68,28 +77,42 @@ function fnGallery() {
         }
     );
 
-    function onSuccess(result) {
-        // convert JSON string to JSON Object
-        var thisResult = JSON.parse(result);
-	   
-	    // convert json_metadata JSON string to JSON Object 
-        var metadata = JSON.parse(thisResult.json_metadata);
-		//$$('#cmetadata').text(thisResult.filename);
-        
-        jphoto = encodeURI(thisResult.filename);
-        var image = document.getElementById('myImage');
-        image.src = thisResult.filename;
-        
-        
-		document.getElementById('debug1').innerText = JSON.stringify(thisResult);
-		document.getElementById('debug2').innerText = JSON.stringify(metadata);
-		
-        
-    }
+    
+}
 
-    function onFail(message) {
-        alert('Failed because: ' + message);
-    }
+function fnBtn1() {
+	
+	try {
+	
+		const reader = new FileReader();
+		reader.onload = function(){
+			var dataURL = reader.result;
+			document.getElementById('debug1').innerText = dataURL;
+			
+		};
+		reader.readAsDataURL(jphoto);
+	
+	} catch(e) {
+		alert('error fnBtn1 ' + e);
+	}
+}
+
+function fnBtn2() {
+	
+	try [
+	
+		var data64 = document.getElementById('debug1').innerText;
+		
+		newBlob = new Blob([data64], {type: 'image/jpg'});
+		document.getElementById('debug1').innerText = JSON.stringify(newBlob);
+	
+	} catch(e) {
+		alert('error fnBtn2 ' + e);
+	}
+}
+
+function fnBtn3() {
+	
 }
 
 function fnSubmit() {
