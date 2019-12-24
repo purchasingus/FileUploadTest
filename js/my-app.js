@@ -95,23 +95,36 @@ function fnBtn1() {
 	} catch(e) {
 		alert('error fnBtn1 ' + e);
 	}
+	
 }
 
 function fnBtn2() {
 	
-	try [
+	try {
 	
 		var data64 = document.getElementById('debug1').innerText;
 		
 		newBlob = new Blob([data64], {type: 'image/jpg'});
-		document.getElementById('debug1').innerText = JSON.stringify(newBlob);
+		document.getElementById('debug2').innerText = JSON.stringify(newBlob);
 	
 	} catch(e) {
 		alert('error fnBtn2 ' + e);
 	}
+	
 }
 
 function fnBtn3() {
+	
+	try {
+	
+		var data64 = document.getElementById('debug1').innerText;
+		
+		newBlob = new Blob(data64, {type: 'image/jpg'});
+		document.getElementById('debug2').innerText = JSON.stringify(newBlob);
+	
+	} catch(e) {
+		alert('error fnBtn3 ' + e);
+	}
 	
 }
 
