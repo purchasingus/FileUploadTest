@@ -111,6 +111,8 @@ function fnBtn1() {
 			}
 			newBlob = new Blob([ia], {type: 'image/jpg'});
 			
+			alert('blob created');
+			
 		}
 		
 	} catch(e) {
