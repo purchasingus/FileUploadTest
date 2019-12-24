@@ -28,7 +28,8 @@
   
   <plugin name="cordova-plugin-whitelist" spec="1" />
   <plugin name="cordova-plugin-device" spec="1.1.2" />
-  <plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />
+  <!--<plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />-->
+  <plugin spec="https://github.com/markerio/cordova-plugin-camera.git" source="git" />
   
   <access origin="*" />
   <allow-intent href="http://*/*" />
