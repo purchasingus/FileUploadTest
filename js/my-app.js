@@ -85,16 +85,16 @@ function fnGallery() {
 		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
-        jphoto = encodeURI(thisResult[0].filename);		//not sure why camera plugin returns an array if using gallery mode (instead of camera mode)
-		alert(jphoto);
-		putImg();
-		/*var tempImage = new Image();
-		tempImage.src = jphoto;
-		tempImage.onload = function() {
-			var img = document.getElementById('myImage');
-			img.src = jphoto;
-			alert(jphoto);
-		};*/
+		//android allows multiple images to be chosen from gallery. returns array of json
+		//ios doesn't allow. returns single json
+		if (Array.isArray(thisResult)) {
+			jphoto = encodeURI(thisResult[0].filename);	//Android: use only first image even if multiple images chosen
+		} else {
+			jphoto = encodeURI(thisResult.filename);
+		}
+		var img = document.getElementById('myImage');
+		img.src = jphoto;
+		
 		
         document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
@@ -111,13 +111,6 @@ function fnGallery() {
         alert('Failed because: ' + message);
     }
     
-}
-
-async function putImg() {
-	await new Promise(r => setTimeout(r, 2000));	//sleep 2000ms
-	var img = document.getElementById('myImage');
-	img.src = jphoto;
-	alert(jphoto);
 }
 
 function fnBtn1() {
