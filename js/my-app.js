@@ -40,21 +40,16 @@ function fnCamera() {
 		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
-        
-		jphoto = encodeURI(thisResult.filename);
+        jphoto = encodeURI(thisResult.filename);
 		var img = document.getElementById('myImage');
         img.src = jphoto;
 		
-        
-		
-        document.getElementById('debug1').value = JSON.stringify(thisResult);
+        //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
-		
 		
         } catch(e) {
 			alert('camera onsuccess ' + e);
 		}
-		
 		
     }
 
@@ -66,20 +61,44 @@ function fnCamera() {
 
 function fnGallery() {
 	
-    /*navigator.camera.getPicture(
+    navigator.camera.getPicture(
         onSuccess, 
         onFail, 
         {
-            quality: 75,
+			quality: 75,
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: Camera.DestinationType.DATA_URI,
+            destinationType: Camera.DestinationType.FILE_URI,
 			allowEdit : false,
 			targetWidth: 1920,
 			targetHeight: 1080,
 			correctOrientation: true,
 			saveToPhotoAlbum: false 
         }
-    );*/
+    );
+
+    function onSuccess(result) {
+        
+		try {
+		
+		// convert JSON string to JSON Object
+        var thisResult = JSON.parse(result);
+		
+        jphoto = encodeURI(thisResult.filename);
+		var img = document.getElementById('myImage');
+        img.src = jphoto;
+		
+        //document.getElementById('debug1').value = JSON.stringify(thisResult);
+		//document.getElementById('debug2').value = JSON.stringify(metadata);
+		
+        } catch(e) {
+			alert('gallery onsuccess ' + e);
+		}
+		
+    }
+
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
     
 }
 
@@ -87,37 +106,7 @@ function fnBtn1() {
 	
 	try {
 		
-		var tempImage = new Image();
-		tempImage.src = jphoto;
-		tempImage.onload = function() {
-			
-			var iWidth = this.width; 
-			var iHeight = this.height; 
-			
-			/* write image into temp canvas with new size */
-			var t_Canvas = document.createElement("canvas");
-			t_Canvas.width = iWidth;
-			t_Canvas.height = iHeight;
-			var t_Ctx = t_Canvas.getContext("2d");
-			t_Ctx.drawImage(tempImage, 0, 0, iWidth, iHeight);
-			
-			/* turn into base64 */
-			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
-			
-			/* convert to blob */
-			var byteString;
-			byteString = atob(dataURL.split(',')[1]);
-			
-			var ia = new Uint8Array(byteString.length);
-			for (var i = 0; i < byteString.length; i++) {
-				ia[i] = byteString.charCodeAt(i);
-			}
-			newBlob = new Blob([ia], {type: 'image/jpg'});
-			
-			alert('blob created');
-			alert(newBlob.size);
-			
-		}
+		//alert('btn1 clicked');
 		
 	} catch(e) {
 		alert('error fnBtn1 ' + e);
@@ -157,12 +146,54 @@ function fnBtn3() {
 	
 }
 
+function fnBlob() {
+	
+	try {
+		
+		var tempImage = new Image();
+		tempImage.src = jphoto;
+		tempImage.onload = function() {
+			
+			var iWidth = this.width; 
+			var iHeight = this.height; 
+			
+			/* write image into temp canvas with new size */
+			var t_Canvas = document.createElement("canvas");
+			t_Canvas.width = iWidth;
+			t_Canvas.height = iHeight;
+			var t_Ctx = t_Canvas.getContext("2d");
+			t_Ctx.drawImage(tempImage, 0, 0, iWidth, iHeight);
+			
+			/* turn into base64 */
+			var dataURL = t_Canvas.toDataURL('image/jpeg', 0.8);
+			
+			/* convert to blob */
+			var byteString;
+			byteString = atob(dataURL.split(',')[1]);
+			
+			var ia = new Uint8Array(byteString.length);
+			for (var i = 0; i < byteString.length; i++) {
+				ia[i] = byteString.charCodeAt(i);
+			}
+			newBlob = new Blob([ia], {type: 'image/jpg'});
+			
+		}
+		
+	} catch(e) {
+		alert('error fnBlob ' + e);
+	}
+	
+}
+
 function fnSubmit() {
     
 	if (jphoto!=null) {
 		
 		try {
 
+			fnBlob();
+			
+			
 			var fileURL = jphoto;
 			var uri = encodeURI("http://ztest.cornerstone-cloud.com/myrol/MyROL_app_listener.cfm");
 			var jFileName = new Date().getTime() + '.jpg';  //force filename to get around unicode and other illegal characters issue
