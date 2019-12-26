@@ -47,8 +47,8 @@ function fnCamera() {
 		*/
         
 		
-        document.getElementById('debug1').innerText = JSON.stringify(thisResult);
-		//document.getElementById('debug2').innerText = JSON.stringify(metadata);
+        document.getElementById('debug1').value = JSON.stringify(thisResult);
+		//document.getElementById('debug2').value = JSON.stringify(metadata);
 		
 		
         } catch(e) {
@@ -128,7 +128,11 @@ function fnBtn2() {
 	
 	try {
 	
-		alert('do nothing');
+		var path = encodeURI(document.getElementById('debug2').value);
+		var img = document.getElementById('myImage');
+        img.src = path;
+		
+		alert('btn2 done');
 	
 	} catch(e) {
 		alert('error fnBtn2 ' + e);
@@ -140,8 +144,7 @@ function fnBtn3() {
 	
 	try {
 	
-		
-		var path = document.getElementById('debug2').innerText;
+		var path = document.getElementById('debug2').value;
 		var img = document.getElementById('myImage');
         img.src = path;
 		
