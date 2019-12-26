@@ -6,9 +6,9 @@ function onAppReady() {
 	document.getElementById('btnCamera').addEventListener("click", fnCamera, false);
     document.getElementById('btnGallery').addEventListener("click", fnGallery, false);
 	
-	document.getElementById('btn1').addEventListener("click", fnBtn1, false);
+	/*document.getElementById('btn1').addEventListener("click", fnBtn1, false);
 	document.getElementById('btn2').addEventListener("click", fnBtn2, false);
-	document.getElementById('btn3').addEventListener("click", fnBtn3, false);
+	document.getElementById('btn3').addEventListener("click", fnBtn3, false);*/
 	
     document.getElementById('btnSubmit').addEventListener("click", fnSubmit, false);
 	
@@ -44,7 +44,7 @@ function fnCamera() {
 		var img = document.getElementById('myImage');
 		img.src = jphoto;
 		
-        document.getElementById('debug1').value = JSON.stringify(thisResult);
+        //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
 		
 		fnBlob();
@@ -96,7 +96,7 @@ function fnGallery() {
 		img.src = jphoto;
 		
 		
-        document.getElementById('debug1').value = JSON.stringify(thisResult);
+        //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
 		
 		fnBlob();
