@@ -40,12 +40,11 @@ function fnCamera() {
 		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
-		// convert json_metadata JSON string to JSON Object 
-        var metadata = JSON.parse(thisResult.json_metadata);
-        
-        jphoto = encodeURI(thisResult.filename);
+        /*
+		jphoto = encodeURI(thisResult.filename);
 		var image = document.getElementById('myImage');
         image.src = thisResult.filename;
+		*/
         
 		
         document.getElementById('debug1').innerText = JSON.stringify(thisResult);
@@ -67,7 +66,7 @@ function fnCamera() {
 
 function fnGallery() {
 	
-    navigator.camera.getPicture(
+    /*navigator.camera.getPicture(
         onSuccess, 
         onFail, 
         {
@@ -80,8 +79,7 @@ function fnGallery() {
 			correctOrientation: true,
 			saveToPhotoAlbum: false 
         }
-    );
-
+    );*/
     
 }
 
@@ -142,7 +140,12 @@ function fnBtn3() {
 	
 	try {
 	
-		alert('do nothing');
+		
+		var path = document.getElementById('debug2').innerText;
+		var img = document.getElementById('myImage');
+        img.src = path;
+		
+		alert('btn3 done');
 	
 	} catch(e) {
 		alert('error fnBtn3 ' + e);
