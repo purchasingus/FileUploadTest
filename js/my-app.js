@@ -41,12 +41,8 @@ function fnCamera() {
         var thisResult = JSON.parse(result);
 		
         jphoto = encodeURI(thisResult.filename);
-		var tempImage = new Image();
-		tempImage.src = jphoto;
-		tempImage.onload = function() {
-			var img = document.getElementById('myImage');
-			img.src = jphoto;
-		};
+		var img = document.getElementById('myImage');
+		img.src = jphoto;
 		
         //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
@@ -90,13 +86,14 @@ function fnGallery() {
         var thisResult = JSON.parse(result);
 		
         jphoto = encodeURI(thisResult.filename);
-		var tempImage = new Image();
+		putImg();
+		/*var tempImage = new Image();
 		tempImage.src = jphoto;
 		tempImage.onload = function() {
 			var img = document.getElementById('myImage');
 			img.src = jphoto;
 			alert(jphoto);
-		};
+		};*/
 		
         document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
@@ -113,6 +110,13 @@ function fnGallery() {
         alert('Failed because: ' + message);
     }
     
+}
+
+async function putImg() {
+	await new Promise(r => setTimeout(r, 2000));	//sleep 2000ms
+	var img = document.getElementById('myImage');
+	img.src = jphoto;
+	alert(jphoto);
 }
 
 function fnBtn1() {
