@@ -41,8 +41,12 @@ function fnCamera() {
         var thisResult = JSON.parse(result);
 		
         jphoto = encodeURI(thisResult.filename);
-		var img = document.getElementById('myImage');
-        img.src = jphoto;
+		var tempImage = new Image();
+		tempImage.src = jphoto;
+		tempImage.onload = function() {
+			var img = document.getElementById('myImage');
+			img.src = jphoto;
+		};
 		
         //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
@@ -86,8 +90,12 @@ function fnGallery() {
         var thisResult = JSON.parse(result);
 		
         jphoto = encodeURI(thisResult.filename);
-		var img = document.getElementById('myImage');
-        img.src = jphoto;
+		var tempImage = new Image();
+		tempImage.src = jphoto;
+		tempImage.onload = function() {
+			var img = document.getElementById('myImage');
+			img.src = jphoto;
+		};
 		
         document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
@@ -181,7 +189,7 @@ function fnBlob() {
 			}
 			newBlob = new Blob([ia], {type: 'image/jpg'});
 			
-		}
+		};
 		
 	} catch(e) {
 		alert('error fnBlob ' + e);
