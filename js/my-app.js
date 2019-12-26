@@ -86,7 +86,8 @@ function fnGallery() {
         var thisResult = JSON.parse(result);
 		
         jphoto = encodeURI(thisResult.filename);
-		putImg();
+		alert(jphoto);
+		putImg(jphoto);
 		/*var tempImage = new Image();
 		tempImage.src = jphoto;
 		tempImage.onload = function() {
@@ -112,11 +113,11 @@ function fnGallery() {
     
 }
 
-async function putImg() {
+async function putImg(path) {
 	await new Promise(r => setTimeout(r, 2000));	//sleep 2000ms
 	var img = document.getElementById('myImage');
-	img.src = jphoto;
-	alert(jphoto);
+	img.src = path;
+	alert(path);
 }
 
 function fnBtn1() {
