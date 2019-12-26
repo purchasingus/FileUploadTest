@@ -44,7 +44,7 @@ function fnCamera() {
 		var img = document.getElementById('myImage');
 		img.src = jphoto;
 		
-        //document.getElementById('debug1').value = JSON.stringify(thisResult);
+        document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
 		
 		fnBlob();
