@@ -85,9 +85,9 @@ function fnGallery() {
 		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
-        jphoto = encodeURI(thisResult.filename);
+        jphoto = encodeURI(thisResult[0].filename);		//not sure why camera plugin returns an array if using gallery mode (instead of camera mode)
 		alert(jphoto);
-		putImg(jphoto);
+		putImg();
 		/*var tempImage = new Image();
 		tempImage.src = jphoto;
 		tempImage.onload = function() {
@@ -113,11 +113,11 @@ function fnGallery() {
     
 }
 
-async function putImg(path) {
+async function putImg() {
 	await new Promise(r => setTimeout(r, 2000));	//sleep 2000ms
 	var img = document.getElementById('myImage');
-	img.src = path;
-	alert(path);
+	img.src = jphoto;
+	alert(jphoto);
 }
 
 function fnBtn1() {
