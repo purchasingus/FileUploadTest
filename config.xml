@@ -26,7 +26,7 @@
   
   <preference name="debuggable" value="false" />
   
-  <plugin name="cordova-plugin-whitelist" spec="1" />
+  <plugin name="cordova-plugin-whitelist" spec="1" /><!-- need this to solve slow writing to cache issue --->
   <plugin name="cordova-plugin-device" spec="1.1.2" />
   <!--<plugin name="cordova-plugin-file" />-->
   <!--<plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />-->

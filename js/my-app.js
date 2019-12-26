@@ -95,6 +95,7 @@ function fnGallery() {
 		tempImage.onload = function() {
 			var img = document.getElementById('myImage');
 			img.src = jphoto;
+			alert(jphoto);
 		};
 		
         document.getElementById('debug1').value = JSON.stringify(thisResult);
