@@ -47,6 +47,8 @@ function fnCamera() {
         //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
 		
+		fnBlob();
+		
         } catch(e) {
 			alert('camera onsuccess ' + e);
 		}
@@ -89,6 +91,8 @@ function fnGallery() {
 		
         //document.getElementById('debug1').value = JSON.stringify(thisResult);
 		//document.getElementById('debug2').value = JSON.stringify(metadata);
+		
+		fnBlob();
 		
         } catch(e) {
 			alert('gallery onsuccess ' + e);
@@ -190,9 +194,6 @@ function fnSubmit() {
 	if (jphoto!=null) {
 		
 		try {
-
-			fnBlob();
-			
 			
 			var fileURL = jphoto;
 			var uri = encodeURI("http://ztest.cornerstone-cloud.com/myrol/MyROL_app_listener.cfm");
