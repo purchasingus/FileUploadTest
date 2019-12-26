@@ -40,11 +40,11 @@ function fnCamera() {
 		// convert JSON string to JSON Object
         var thisResult = JSON.parse(result);
 		
-        /*
+        
 		jphoto = encodeURI(thisResult.filename);
-		var image = document.getElementById('myImage');
-        image.src = thisResult.filename;
-		*/
+		var img = document.getElementById('myImage');
+        img.src = jphoto;
+		
         
 		
         document.getElementById('debug1').value = JSON.stringify(thisResult);
@@ -115,6 +115,7 @@ function fnBtn1() {
 			newBlob = new Blob([ia], {type: 'image/jpg'});
 			
 			alert('blob created');
+			alert(newBlob.size);
 			
 		}
 		
