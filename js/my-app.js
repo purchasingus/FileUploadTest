@@ -220,24 +220,21 @@ function fnSubmit() {
 			var xhr = new XMLHttpRequest();
 			
 			
-			//xhr.upload.addEventListener('loadstart', onloadstartHandler, false);
-			//xhr.upload.addEventListener('progress', onprogressHandler, false);
-			//xhr.upload.addEventListener('load', onloadHandler, false);
-			//xhr.addEventListener('readystatechange', onreadystatechangeHandler, false);
+			xhr.upload.addEventListener('loadstart', onloadstartHandler, false);
+			xhr.upload.addEventListener('progress', onprogressHandler, false);
+			xhr.upload.addEventListener('load', onloadHandler, false);
+			xhr.addEventListener('readystatechange', onreadystatechangeHandler, false);
 			
 			
 			xhr.open('POST', uri);
 			
-			xhr.onreadystatechange = function () {
-				alert(xhr.readyState);
-				alert(xhr.status);
-				alert(xhr.responseText);
+			/*xhr.onreadystatechange = function () {
 				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 					//console.log(xhr.responseText);
 					alert('done: ' + xhr.responseText);
 					
 				}
-			};
+			};*/
 			
 			
 			
