@@ -42,7 +42,7 @@
   <!-- IMPORTANT: set the debuggable preference to false before you build for the store! -->   
   
   <plugin name="pushwoosh-pgb-plugin" source="npm" spec="7.18.2">
-	<variable name="PLAY_SERVICES_VERSION" value="15.+" />
+	<variable name="PLAY_SERVICES_VERSION" value="12." />
   </plugin>
   <preference name="android-build-tool" value="gradle" />
   <!--<plugin name="pushwoosh-cordova-plugin" spec="6.5.3" />-->
