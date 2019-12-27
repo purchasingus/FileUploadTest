@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <!--- icons set --->
+    <link rel="stylesheet" href="css/framework7-icons.css">
+    <!--- materials theme 
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+	<link rel="stylesheet" href="css/framework7.material.colors.min.css">--->
+  </head>
+  <body>
+      
+      
+          
+          
+      <script type="text/javascript" src="js/framework7.js"></script>
+      <script>
+          
+          var myApp = new Framework7({
+                animateNavBackIcon: true
+            });
+
+            // Export selectors engine
+            var $$ = Dom7;
+          
+          
+          
+          var data1 = {
+            text1: 'this is text',
+            file1: 'file://guest012/guest012b/Documents/GitHub/CitizensEye/www/img/icon-gallery.png'
+          };
+          
+          
+          
+          
+          $$.ajax({
+            url: 'http://www.klriver.org/zzzpostlistener.cfm',
+            enctype: 'multipart/form-data',
+            data: data1,
+            cache: false,
+            //contentType: 'multipart/form-data',
+            //processData: false,
+            method: 'POST',
+            //dataType: 'html',
+            success: function(obj, status, xhr) {
+                console.log('suc');
+                console.log(status);
+                console.log(data1);
+            }, 
+            error: function(xhr, status) {
+                console.log('err');
+                
+            }
+          });
+          
+          
+      </script>
+	
+  </body>
+</html>
+      

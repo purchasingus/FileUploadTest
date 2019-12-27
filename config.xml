@@ -1,19 +1,26 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget 
-  id="my.chancornerstone.fileuploadtest" 
-  version="0.0.1" 
-  xmlns="http://www.w3.org/ns/widgets" 
-  xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "my.chancornerstone.fileuploadtest"
+    versionCode = "18"
+	android-versionCode = "18"
+    version     = "1.0.8" >
+
+<!-- for Enterprise, and therefore local testing, the App id = "com.chancornerstone.my.citizenseye" -->
+<!-- for Apple AppStore and therefore also Google Playstore, the App ID = "com.chancornerstone.my.citizenseyeappstore"  -->
+
+
+  <name>ZZZ Citizen's Eye</name>
+  <description>ROL Citizen's Eye</description>
+  <author email="support@cornerstone.my" href="http://www.cornerstone.my">Cornerstone Corp Sdn Bhd</author>
+
+  <platform name="android" />
+  <platform name="ios" />
   
-  <name>File Upload Test</name>
-  <description>
-      File upload test 2019 from camera/gallery
-  </description>
-  <author email="dev@cornerstone.my" href="http://www.cornerstone.my">
-      Cornerstone Team
-  </author>
-  <content src="index.html" />
-  
+  <!-- added in the hope to prevent Application Error due to timeout -->
+  <preference name="LoadUrlTimeoutValue" value="120000"/>
+
   <preference name="phonegap-version" value="cli-9.0.0" />
   <preference name="permissions" value="none" />
   <preference name="orientation" value="portrait" />
@@ -24,45 +31,162 @@
   <preference name="android-targetSdkVersion" value="26"/>
   <preference name="android-installLocation" value="auto"/>
   
+
+  <!-- to solve keyboard overlapping input: NOT WORKING -->
+  <!--<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize"/>-->
+  <preference name="splashscreen" value="splash"/>
+
+  <!-- Change the debuggable preference to true to build a remote CDT debuggable app for -->
+  <!-- Crosswalk apps on Android 4.0+ devices and Cordova apps on Android 4.4+ devices. -->
   <preference name="debuggable" value="false" />
+  <!-- IMPORTANT: set the debuggable preference to false before you build for the store! -->   
   
-  <plugin name="cordova-plugin-whitelist" spec="1" />
+  <plugin name="cordova-plugin-inappbrowser" spec="1.3.0" />
   <plugin name="cordova-plugin-device" spec="1.1.2" />
-  <!--<plugin name="cordova-plugin-file" />-->
+  <plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
+  
+  <!--<plugin name="pushwoosh-cordova-plugin" spec="6.5.3" />-->
+  <plugin name="pushwoosh-pgb-plugin" source="npm" spec="7.18.2" />
+  <preference name="android-build-tool" value="gradle" />
+  
+  <plugin name="cordova-plugin-statusbar" spec="2.2.3" />
+  <plugin name="cordova-plugin-dialogs" spec="1.3.3" />
+  <plugin name="cordova-plugin-whitelist" spec="1.3.2" />
+  <plugin name="cordova-plugin-geolocation" spec="2.4.3" />
+  <plugin name="phonegap-plugin-mobile-accessibility" spec="1.0.5" />
+  <!--<plugin name="cordova-plugin-google-analytics" spec="0.8.1" />-->
+  
   <!--<plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />-->
   <plugin spec="https://github.com/vlinde/cordova-plugin-camera-with-exif" source="git" />
+  <!-- use below, bottom of this file gap:config-file to modify iOS AppStore mandatory alert modal for NS-usage permissions -->
   
-  <access origin="*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
-  <allow-intent href="tel:*" />
-  <allow-intent href="sms:*" />
-  <allow-intent href="mailto:*" />
-  <allow-intent href="geo:*" />
+  <!--<plugin name="cordova-plugin-file" source="npm" spec="4.0.0" />-->
+  <!--<plugin name="cordova-plugin-file-transfer" source="npm" spec="1.6.3" />--><!--no longer in use since iOS13-->
+
+    
+  <icon src="icon.png" />
+  <splash src="splash.png" />
   
-  <platform name="android">
-      <allow-intent href="market:*" />
-  </platform>
+  <content src="index.html"/>
+  <access origin="*"/>
   
-  <platform name="ios">
-      
-	  <allow-intent href="itms:*" />
-      <allow-intent href="itms-apps:*" />
-	  
-	  <preference name="deployment-target" value="10.0" />
-	  
-	  <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
-		<string>Enable the app to access your Photo library to retrieve photo images (e.g. of pollution-related issues or best practices) for upload as part of your reporting submission.</string>
-	  </edit-config>
-	  <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
-		<string>This app only requires access to your location WHEN IN USE in order to include location information into the photo that you capture with your camera prior to your reporting submission.</string>
-	  </edit-config>
-	  <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-		<string>This allows us to include your location information within your captured photo when you upload the photo as part of your reporting submission.</string>
-	  </edit-config>
-	  <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-		<string>Enable the app to access your camera to capture photo images (e.g. take photos of pollution-related issues or best practices) and upload as part of your reporting submission.</string>
-	  </edit-config>
-	  
-  </platform>
+  <allow-intent href="*"/>
+  <allow-navigation href="*"/>
+  
+<platform name="android">
+    <!-- below requires the splash screen plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
+    <preference name="SplashMaintainAspectRatio" value="true" />
+	
+	<preference name="AutoHideSplashScreen" value="true"/>
+    <preference name="FadeSplashScreen" value="true"/>
+    <preference name="FadeSplashScreenDuration" value="1000"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+	
+	<icon platform="android" src="package-assets/icons-Android/icon-36x36.png" density="ldpi" width="36" height="36"/>
+	<icon platform="android" src="package-assets/icons-Android/icon-48x48.png" density="mdpi" width="48" height="48"/>
+	<icon platform="android" src="package-assets/icons-Android/icon-72x72.png" density="hdpi" width="72" height="72"/>
+	<icon platform="android" src="package-assets/icons-Android/icon-96x96.png" density="xhdpi" width="96" height="96"/>
+	<splash platform="android" src="package-assets/icons-Android/Splashscreen-480x640.png" density="hdpi" width="480" height="640" orientation="portrait"/>
+	<splash platform="android" src="package-assets/icons-Android/Splashscreen-720x960.png" density="xhdpi" width="720" height="960" orientation="portrait"/>
+	<splash platform="android" src="package-assets/icons-Android/Splashscreen-320x470.png" density="mdpi" width="320" height="470" orientation="portrait"/>
+	<splash platform="android" src="package-assets/icons-Android/Splashscreen-320x426.png" density="ldpi" width="320" height="426" orientation="portrait"/>
+	
+	<!--For Phonegap Build Cli 8.0.0 and up, the target path is under app/-->
+	<resource-file src="google-services.json" target="app/google-services.json" />
+	
+	
+</platform>
+
+
+<platform name="ios">
+
+    <preference name="deployment-target" value="10.0" />
+
+    <!-- 'value' = number of milliseconds to display the splash screen in a Cordova build. -->
+    <!-- This preference only affects Cordova builds for Crosswalk and Android. -->
+    <!-- <preference name="SplashScreenDelay" value="2000" /> -->
+
+    <!-- below requires the splash screen plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-splashscreen -->
+    <preference name="AutoHideSplashScreen" value="true"/>
+    <preference name="FadeSplashScreen" value="true"/>
+    <preference name="FadeSplashScreenDuration" value="1000"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+
+    <!-- below requires the status bar plugin -->
+    <!-- docs: https://github.com/apache/cordova-plugin-statusbar -->
+    <!-- see http://devgirl.org/2014/07/31/phonegap-developers-guid -->
+    <preference name="StatusBarOverlaysWebView" value="false"/>
+    <preference name="StatusBarBackgroundColor" value="#000000"/>
+    <preference name="StatusBarStyle" value="lightcontent"/>
+ 
+	<icon platform="ios" src="icons-iOS/icon-29x29.png" width="29" height="29"/>
+    <icon platform="ios" src="icons-iOS/icon-36x36.png" width="36" height="36"/>
+    <icon platform="ios" src="icons-iOS/icon-40x40.png" width="40" height="40"/>
+    <icon platform="ios" src="icons-iOS/icon-48x48.png" width="48" height="48"/>
+    <icon platform="ios" src="icons-iOS/icon-50x50.png" width="50" height="50"/>
+    <icon platform="ios" src="icons-iOS/icon-57x57.png" width="57" height="57"/>
+    <icon platform="ios" src="icons-iOS/icon-58x58.png" width="58" height="58"/>
+    <icon platform="ios" src="icons-iOS/icon-60x60.png" width="60" height="60"/>
+    <icon platform="ios" src="icons-iOS/icon-72x72.png" width="72" height="72"/>
+    <icon platform="ios" src="icons-iOS/icon-76x76.png" width="76" height="76"/>
+    <icon platform="ios" src="icons-iOS/icon-80x80.png" width="80" height="80"/>
+    <icon platform="ios" src="icons-iOS/icon-87x87.png" width="87" height="87"/>
+    <icon platform="ios" src="icons-iOS/icon-96x96.png" width="96" height="96"/>
+    <icon platform="ios" src="icons-iOS/icon-100x100.png" width="100" height="100"/>
+    <icon platform="ios" src="icons-iOS/icon-114x114.png" width="114" height="114"/>
+    <icon platform="ios" src="icons-iOS/icon-120x120.png" width="120" height="120"/>
+    <icon platform="ios" src="icons-iOS/icon-144x144.png" width="144" height="144"/>
+    <icon platform="ios" src="icons-iOS/icon-152x152.png" width="152" height="152"/>
+    <icon platform="ios" src="icons-iOS/icon-167x167.png" width="167" height="167"/>
+    <icon platform="ios" src="icons-iOS/icon-180x180.png" width="180" height="180"/>
+	
+	<icon platform="ios" src="icons-iOS/icon-1024x1024.png" width="1024" height="1024"/>
+	
+	
+    <splash platform="ios" src="icons-iOS/Splashscreen-320x426.png" width="320" height="426" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-320x460.png" width="320" height="460" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-320x470.png" width="320" height="470" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-320x480.png" width="320" height="480" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-480x640.png" width="480" height="640" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-640x960.png" width="640" height="960" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-640x1096.png" width="640" height="1096" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-640x1136.png" width="640" height="1136" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-720x960.png" width="720" height="960" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-750x1334.png" width="750" height="1334" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-768x1004.png" width="768" height="1004" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-768x1024.png" width="768" height="1024" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-1242x2208.png" width="1242" height="2208" orientation="portrait"/>
+    <splash platform="ios" src="icons-iOS/Splashscreen-1536x2008.png" width="1536" height="2008" orientation="portrait"/>
+	
+	<resource-file src="GoogleService-Info.plist" />
+	
+	
+</platform>  
+
+<!-- ios Apple AppStore since ios10 has stringent requirments to specify the below -->  
+<!-- https://phonegap.com/blog/2014/01/30/customizing-your-android-manifest-and-ios-property-list-on-phonegap-build/  -->  
+
+<gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription">
+    <string>Enable the app to access your Photo library to retrieve photo images (e.g. of pollution-related issues or best practices) for upload as part of your reporting submission.</string>
+</gap:config-file>
+
+<gap:config-file platform="ios" parent="NSLocationAlwaysUsageDescription">
+        <string>This app only requires access to your location WHEN IN USE in order to include location information into the photo that you capture with your camera prior to your reporting submission.</string>
+</gap:config-file>
+
+<gap:config-file platform="ios" parent="NSLocationWhenInUseUsageDescription">
+        <string>This allows us to include your location information within your captured photo when you upload the photo as part of your reporting submission.</string>
+</gap:config-file>  
+   
+<gap:config-file platform="ios" parent="NSCameraUsageDescription">
+        <string>Enable the app to access your camera to capture photo images (e.g. take photos of pollution-related issues or best practices) and upload as part of your reporting submission.</string>
+</gap:config-file>
+  
+
+
+<!-- Note gap:config-file is for cli-6.5.0  It seems for cli-7.0.1 need to use edit-config target=nscamerausagedescription etc -->
+  
+  
 </widget>

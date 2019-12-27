@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "625499343081",
+    "firebase_url": "https://fileuploadtest-c2d32.firebaseio.com",
+    "project_id": "fileuploadtest-c2d32",
+    "storage_bucket": "fileuploadtest-c2d32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625499343081:android:cf1034c42dd924402bc878",
+        "android_client_info": {
+          "package_name": "my.chancornerstone.fileuploadtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625499343081-knrbqalti37vlpkvtbo7mgnunut8lnk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC86S3ESdt7KLInA3cEagrckfBwIMtE0-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625499343081-knrbqalti37vlpkvtbo7mgnunut8lnk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

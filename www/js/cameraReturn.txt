@@ -1,0 +1,28 @@
+{
+    "filename": "file:///storage/emulated/0/Android/data/com.chancornerstone.my.citizenseye/cache/1512717405575.jpg", 
+    "json_meta": 
+    {
+	"aperture": "1.9",
+	"datetime": "2017:12:05 14:24:06",
+	"exposureTime": 0.02",
+	"flash": "0",
+	"focalLength": "360/100",
+	"gpAltitude": null,
+	"gpsAltitudeRef": null,
+	"gpsDateStamp": null,
+	"gspLatitude": null,
+	"gpsLatitudeRef": null,
+	"gpsLongitude": null,
+	"gpsLongitudeRef": null,
+	"gpsProcessingMethod": null,
+	"gpsTimestamp": null,
+	"iso": "200",
+	"make": "samsung",
+	"model": "SM-J330G",
+	"orientation": "6",
+	"whiteBalance": "0"
+    }
+}
+
+if pick from gallery: 
+file:///storage/emulated/0/Android/data/com.chancornerstone.my.citizenseye/cache/20170821_204409.jpg?1512728867042

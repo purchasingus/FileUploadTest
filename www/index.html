@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>MyROL Mobile App</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <!--- icons set --->
+    <link rel="stylesheet" href="css/framework7-icons.css">
+    <!--- materials theme 
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+	<link rel="stylesheet" href="css/framework7.material.colors.min.css"> --->
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal" style="background-color:white;">
+      <div class="content-block">
+        <form id="formLang">
+        <p class="buttons">
+        <input type="button" class="button" name="btnEN" id="btnEN" value="English" onclick="switchLang('EN');" />
+		<br />
+		<input type="button" class="button" name="btnBM" id="btnBM" value="Bahasa Malaysia" onclick="switchLang('BM');" />
+        <!---<br />
+        <input type="button" class="button" name="btnReset" id="btnReset" value="Debug: Reset" onclick="resetLang();" />--->
+        </p>
+        </form>
+      </div>
+        <hr />
+      <div class="content-block">
+          Legend / Petunjuk
+        <hr />
+        <p style="line-height:2">
+        <img src="img/icon-thumbsup-green.svg" style="vertical-align:middle;" /> Best Practice / Amalan Terbaik
+        <!----<br /><img src="img/icon-tick-green.svg" style="vertical-align:middle;"  />---->
+        <br /><img src="img/icon-issue.svg" style="vertical-align:middle;"  /> Issue / Isu
+        <br /><img src="img/icon-source.svg" style="vertical-align:middle;"  /> Source / Sumber Pencemaran
+        <br /><img src="img/icon-observation.svg" style="vertical-align:middle;"  /> Observation / Pemerhatian
+        <br /><img src="img/icon-concern.svg" style="vertical-align:middle;"  /> Concerns / Kebimbangan
+        <br /><img src="img/icon-comment.svg" style="vertical-align:middle;"  /> Comment / Ulasan
+        </p>
+      <p>&nbsp;</p>
+      <p><a href="#" class="link button close-panel">Return / Kembali</a></p>
+
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views tabs toolbar-through">
+      <!-- Your main view, should have "view-main" class-->
+      <div id="view-1" class="view view-main tab active">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <!-- Navbar inner for Index page-->
+          <div data-page="index" class="navbar-inner">
+            <!-- We have home navbar without left link-->
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through" id="pageOverall">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title"></div>
+              <div class="content-block">
+                
+                
+                <!-- Speed Dial Wrap -->
+                <div class="speed-dial" style="top:255px;">
+                    <!-- FAB inside will open Speed Dial actions -->
+                    <a href="#" class="floating-button">
+                      <!-- First icon is visible when Speed Dial actions are closed -->
+                      <i class="f7-icons">add</i>
+                      <!-- Second icon is visible when Speed Dial actions are opened -->
+                      <i class="f7-icons">close</i>
+                    </a>
+                    <!-- Speed Dial Actions -->
+                    <div class="speed-dial-buttons">
+                      <!-- First Speed Dial button -->
+                      <a href="#" class="close-speed-dial" id="btnGallery">
+                        <i class="f7-icons" style="font-size:22px;">photos_fill</i>
+                      </a>
+                      <!-- Second Speed Dial  button -->
+                      <a href="#" class="close-speed-dial" id="btnCamera">
+                        <i class="f7-icons" style="font-size:22px;">camera_filled</i>
+                      </a>
+                    </div>
+                </div>
+                <!-- End of Speed Dial -->
+                
+                
+                <div class="content-block-inner">
+                  <div align="center"><img id="myImage" src="img/icon-camera.png" style="width:auto; max-width:100%; max-height:200px;" /></div>
+                  <div align="center"><span id="sLngLat" style="font-style:italic;">(No Location)</span></div>
+                  <div><a href="#" class="button button-fill" style="background:orange;" onclick="myApp.showTab('#view-5');" id="btnLocateOnMap" disabled="disabled"><span id="lbl_LocateOnMapBtn">Locate on Map</span></a></div>
+                </div>
+              </div>
+              <input type="hidden" id="fLng" name="fLng" value="">
+              <input type="hidden" id="fLat" name="fLat" value="">
+              
+              
+              <div class="content-block-title" id="lbl_Type">Type of Report</div>
+              <div class="content-block buttons-row">
+                <a href="#" id="lbl_Type_Issue" class="button button-big active" onClick="switchType('Issue');"><img src="img/icon-issue-white.svg" style="vertical-align:middle;" />&nbsp;Issue</a>
+                <a href="#" id="lbl_Type_BestPractice" class="button button-big" onClick="switchType('BestPractice');">Good Job</a>
+              </div>
+              <input type="hidden" id="fType" name="fType" value="Issue" />
+              
+              <div class="list-block">
+                  <ul>
+                    <li class="grpIssue" id="id1111">
+                      <a href="#" class="item-link smart-select" data-back-on-select="true" data-smart-custom-div="fIssue">
+                        <select name="fIssue" id="fIssue">
+                          <option value="" id="lbl_Issue_None">(none)</option>
+                          <option value="Water Quality" id="lbl_Issue_WaterQuality">Water Quality</option>
+                          <option value="Solid Waste" id="lbl_Issue_SolidWaste">Solid Waste</option>
+                          <option value="River Reserve Encroachment" id="lbl_Issue_RiverReserveEncroachment">River Reserve Encroachment</option>
+                          <option value="Land Clearance" id="lbl_Issue_LandClearance">Land Clearance</option>
+                        </select>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title" id="lbl_Issue">Issue</div>
+                            <div class="item-after" id="fIssueAfter"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="grpIssue">
+                      <a href="#" class="item-link smart-select" data-back-on-select="false" data-smart-custom-div="fSource">
+                        <select name="fSource" id="fSource" multiple>
+                          <!--<option value="" id="lbl_Source_None">(none)</option>-->
+                          <option value="Land Development" id="lbl_Source_LandDevelopment">Land Development</option>
+                          <option value="Restaurant/Food Stalls/Commercial/Wet Market" id="lbl_Source_RestaurantFoodStallsCommercialWetMarket">Restaurant/Food Stalls/Commercial/Wet Market</option>
+                          <option value="Industrial" id="lbl_Source_Industrial">Industrial</option>
+                          <option value="Residential Area/Sewage Treatment Plant" id="lbl_Source_ResidentialAreaSewageTreatmentPlant">Residential Area/Sewage Treatment Plant</option>
+                        </select>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title" id="lbl_Source"><img src="img/icon-source.svg" style="vertical-align:middle;" />&nbsp;Source of Pollution</div>
+                            <div class="item-after item-after2"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="grpIssue">
+                      <a href="#" class="item-link smart-select" data-back-on-select="false" data-smart-custom-div="fObservation">
+                        <select name="fObservation" id="fObservation" multiple>
+                          <!--<option value="" id="lbl_Observation_None">(none)</option>-->
+                          <option value="Colored" id="lbl_Observation_Colored">Colored</option>
+                          <option value="Greasy" id="lbl_Observation_Greasy">Greasy</option>
+                          <option value="Smelly" id="lbl_Observation_Smelly">Smelly</option>
+                          <option value="Dead Fish" id="lbl_Observation_DeadFish">Dead Fish</option>
+                        </select>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title" id="lbl_Observation"><img src="img/icon-observation.svg" style="vertical-align:middle;" />&nbsp;Observation</div>
+                            <div class="item-after item-after2"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="grpIssue">
+                      <a href="#" class="item-link smart-select" data-back-on-select="false" data-smart-custom-div="fImpact">
+                        <select name="fConcerns" id="fConcerns" multiple>
+                          <!--<option value="" id="lbl_Concerns_None">(none)</option>-->
+                          <option value="Disease" id="lbl_Concerns_Disease">Disease</option>
+                          <option value="Flash Flood" id="lbl_Concerns_FlashFlood">Flash Flood</option>
+                          <option value="Dead Fish" id="lbl_Concerns_DeadFish">Dead Fish</option>
+                          <option value="Siltation/Clogging" id="lbl_Concerns_SiltationClogging">Siltation/Clogging</option>
+                        </select>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title" id="lbl_Concerns"><img src="img/icon-concern.svg" style="vertical-align:middle;" />&nbsp;Concerns</div>
+                            <div class="item-after item-after2"></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <div class="item-content">
+                      	<div class="item-title label" id="lbl_Comment"><img src="img/icon-comment.svg" style="vertical-align:middle;" />&nbsp;Comment:</div>
+                      </div>
+                    </li>
+                    <li class="align-top">
+                      <div class="item-content">
+                      	<div class="item-inner">
+                          <div class="item-input">
+                              <textarea name="fComment" id="fComment" style="border:1px solid #eee; margin-bottom:10px; padding:3px 5px;" placeholder="..."></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    
+                  </ul>
+              </div>
+              
+              <div class="content-block">
+              	<a href="#" id="btnSubmit" class="button button-big button-fill">Submit</a>
+              </div>
+              
+			  <p>&nbsp;</p>
+			  <p>&nbsp;</p>
+			  <p>&nbsp;</p>
+			  <p>&nbsp;</p>
+              
+              
+              
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      <div id="view-2" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-3" class="page">
+            <div class="page-content">
+              <!---<input type="button" class="button button-fill" id="btnRefresh" value="Reload" onclick="document.getElementById('tab2iframe').src+='';" style="margin:5px 20px 0 0;" />
+              <iframe id="tab2iframe" src="http://www.klriver.org/MyROL_app_tab2.cfm" width="99%" height="490" frameborder="0"></iframe>--->
+              <button class="button button-fill" style="width:99%;" onclick="fnListing();"><i class="f7-icons">reload_round_fill</i></button>
+              
+              <div class="block" id="caseListing">
+                  <div style="min-height:400px; padding:8px;"><em>Loading...</em></div>
+              </div>    
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-3" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-4" class="page">
+            <div class="page-content">
+              <!---<iframe id="tab3iframe" src="http://www.klriver.org/MyROL_app_iframe.cfm?menuid=7" width="99%" height="490" frameborder="0"></iframe>--->
+              <div class="row"><div id="lbl_map_top" class="col-100" style="text-align:center;">Below is the spacial distribution of the last 25 reports: </div></div>
+              <div id="map_canvasTab3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-4" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-2" class="page">
+            <div class="page-content">
+              <!---<iframe id="tab4iframe" src="http://www.klriver.org/MyROL_app_iframe.cfm?menuid=8" width="99%" height="490" frameborder="0"></iframe>--->
+              <div id="infoPage"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-5" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"><a href="#" class="link icon-only" id="btnBackGoogleMap" onclick="myApp.showTab('#view-1');"> <i class="f7-icons">left</i> <span id="lbl_Back">Back</span></a></div>
+            <div class="center sliding" id="lbl_LocateOnMap">Locate on Map</div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-8" class="page">
+            <div class="page-content">
+				
+                <div class="item-input">
+                    <input type="hidden" id="gmapinit" value="no">
+                    <input id="pac-input" type="text" placeholder="Enter location to search">
+                    <a id="btnMarkLocation" href="#" class="button button-fill" onclick="fnMarkLocation();">Mark as Location</a>
+                </div>
+                <div id="map"></div>
+				
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-6" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-10" class="page">
+            <div class="page-content">
+            
+                <div class="content-block-title" id="lbl_Profile">Profile</div>
+                <div class="content-block">
+                    <span id="lbl_loginAs">You are logged in as</span>: <span id="lbl_loginEmail"></span>
+                </div>
+                <div class="content-block">
+                    <a href="#" class="button" onclick="fnLogout();" id="lbl_LogoutButton">Logout</a>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-7" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">ROL Citizen's Eye</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="f7-icons">menu</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-11" class="page">
+            <div class="page-content">
+            
+                <div class="content-block-title" id="lbl_Login">Login</div>
+                <form name="formLogin" class="list-block">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="email" id="fLoginEmail" name="fLoginEmail" placeholder="Email">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="password" id="fLoginPassword" name="fLoginPassword" placeholder="Password">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" class="button button-fill" onclick="fnLogin();" id="lbl_LoginButton">Login</a>
+                            <span id="loginSuc" style="display:block; color:#005900;"></span>
+                            <span id="loginErr" style="display:block; color:#ff0000;"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" style="margin-top:15px;" onclick="myApp.showTab('#view-8');" id="lbl_NewUserLink"><em>New user? Click here to register</em></a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" style="margin-top:15px;" onclick="myApp.showTab('#view-9');" id="lbl_ForgotPwdLink"><em>Forgot password? Click here to retrieve</em></a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-8" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"><a href="#" class="link icon-only" onclick="myApp.showTab('#view-6');"> <i class="f7-icons">left</i> <span id="lbl_Back">Back</span></a></div>
+            <div class="center sliding">ROL Citizen's Eye</div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-9" class="page">
+            <div class="page-content">
+				
+                <div class="content-block-title" id="lbl_Registration">Registration</div>
+                <form name="formRegister" class="list-block">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="email" id="fRegEmail" name="fRegEmail" placeholder="Email">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="password" id="fRegPassword" name="fRegPassword" placeholder="Password (min 8 alpha-numeric characters)">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="password" id="fRegPassword2" name="fRegPassword2" placeholder="Re-enter Password">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" class="button button-fill" onclick="fnRegister();" id="lbl_RegisterButton">Register</a>
+                            <span id="regSuc" style="display:block; color:#005900;"></span>
+                            <span id="regErr" style="display:block; color:#ff0000;"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" style="margin-top:15px;" onclick="myApp.showTab('#view-6');" id="lbl_RegistrationBackButton"><em>Back to Login Page</em></a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+				
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="view-9" class="view tab">
+        <!-- We can make with view with navigation, let's add Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"><a href="#" class="link icon-only" onclick="myApp.showTab('#view-6');"> <i class="f7-icons">left</i> <span id="lbl_Back">Back</span></a></div>
+            <div class="center sliding">ROL Citizen's Eye</div>
+          </div>
+        </div>
+        <div class="pages navbar-through">
+          <div data-page="index-13" class="page">
+            <div class="page-content">
+				
+                <div class="content-block-title" id="lbl_RetrievePwd">Retrieve Password</div>
+                <form name="formRegister" class="list-block">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input type="email" id="fRetPwdEmail" name="fRetPwdEmail" placeholder="Email">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" class="button button-fill" onclick="fnRetrievePassword();" id="lbl_RetrievePwdButton">Retrieve Password</a>
+                            <span id="retSuc" style="display:block; color:#005900;"></span>
+                            <span id="retErr" style="display:block; color:#ff0000;"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input" style="text-align:center;">
+                            <a href="#" style="margin-top:15px;" onclick="myApp.showTab('#view-6');" id="lbl_RetrievePwdBackButton"><em>Back to Login Page</em></a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+				
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <!-- Bottom Tabbar-->
+      <div class="toolbar tabbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#view-1" class="tab-link active" id="btnHome"><i class="f7-icons">camera_fill</i><span class="tabbar-label">Home</span></a>
+            <a href="#view-2" class="tab-link"><i class="f7-icons">cloud_fill</i><span class="tabbar-label">Reports</span></a>
+            <a href="#view-3" class="tab-link"><i class="f7-icons">star_fill</i><span class="tabbar-label">Map</span></a>
+            <a href="#view-4" class="tab-link"><i class="f7-icons">info_fill</i><span class="tabbar-label">Info</span></a>
+            <a href="#view-6" class="tab-link" id="btnProfile"><i class="f7-icons">person</i><span class="tabbar-label">Profile</span></a>
+          </div>
+      </div>
+      
+      
+      
+    </div>
+	
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="js/const.js"></script>
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script type="text/javascript" src="js/lang.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZnGhVMGkDNik-8U2fZmbyFRzsqBm-kog&libraries=places,geometry&callback=initAutocomplete" async defer></script>
+	
+  </body>
+</html>
