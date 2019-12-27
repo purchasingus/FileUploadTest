@@ -229,11 +229,13 @@ function fnSubmit() {
 			xhr.open('POST', uri);
 			
 			xhr.onreadystatechange = function () {
-				alert(xhr);
-				alert(this);
+				alert(xhr.readyState);
+				alert(xhr.status);
+				alert(xhr.responseText);
 				if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 					//console.log(xhr.responseText);
-					alert('done');
+					alert('done: ' + xhr.responseText);
+					
 				}
 			};
 			
