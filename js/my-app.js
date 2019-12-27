@@ -302,7 +302,7 @@ function onprogressHandler(evt) {
 }
 // Handle the response from the server
 function onreadystatechangeHandler(evt) {
-  alert(JSON.stringify(evt));
+  alert(JSON.stringify(this));
   var status, text, readyState;
   try {
     readyState = evt.target.readyState;
@@ -313,7 +313,7 @@ function onreadystatechangeHandler(evt) {
     return;
   }
   if (readyState == 4 && status == '200' && evt.target.responseText) {
-    var status = document.getElementById('upload-status');
+	var status = document.getElementById('upload-status');
     status.innerHTML += '<' + 'br>Success!';
     var result = document.getElementById('result');
     result.innerHTML = '<p>The server saw it as:</p><pre>' + evt.target.responseText + '</pre>';
