@@ -56,7 +56,7 @@
   <!--<plugin name="cordova-plugin-google-analytics" spec="0.8.1" />-->
   
   <!--<plugin name="cordova-plugin-camera-with-exif" spec="1.2.2" />-->
-  <plugin spec="https://github.com/vlinde/cordova-plugin-camera-with-exif" source="git" />
+  <!--<plugin spec="https://github.com/vlinde/cordova-plugin-camera-with-exif" source="git" />-->
   <!-- use below, bottom of this file gap:config-file to modify iOS AppStore mandatory alert modal for NS-usage permissions -->
   
   <!--<plugin name="cordova-plugin-file" source="npm" spec="4.0.0" />-->
