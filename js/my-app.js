@@ -302,6 +302,7 @@ function onprogressHandler(evt) {
 }
 // Handle the response from the server
 function onreadystatechangeHandler(evt) {
+  alert(JSON.stringify(evt));
   var status, text, readyState;
   try {
     readyState = evt.target.readyState;
