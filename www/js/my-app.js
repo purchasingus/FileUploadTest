@@ -1046,7 +1046,7 @@ function fnSubmit() {
             try {
 
                 var fileURL = jphoto;
-				var uri = encodeURI("http://ztest.cornerstone-cloud.com/myrol/MyROL_app_listener.cfm");
+				var uri = encodeURI("http://www.klriver.org/MyROL_app_listener.cfm");
 				var jFileName = new Date().getTime() + '.jpg';  //force filename to get around unicode and other illegal characters issue
 				
 				var formData = new FormData();
