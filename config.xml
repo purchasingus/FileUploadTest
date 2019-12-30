@@ -41,6 +41,13 @@
   <preference name="debuggable" value="false" />
   <!-- IMPORTANT: set the debuggable preference to false before you build for the store! -->   
   
+  <plugin name="cordova-android-play-services-gradle-release">
+	<variable name="PLAY_SERVICES_VERSION" value="15.+" />
+  </plugin>
+  <plugin name="cordova-android-firebase-gradle-release">
+	<variable name="FIREBASE_VERSION" value="15.+" />
+  </plugin>
+  
   <plugin name="pushwoosh-pgb-plugin" source="npm" spec="7.18.4">
 	<variable name="PLAY_SERVICES_VERSION" value="15.+" />
   </plugin>
